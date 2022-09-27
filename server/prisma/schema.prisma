@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Game {
+  // precisa de uma indicação de chave, @id
+  id        String @id @default(uuid())
+  title     String
+  bannerUrl String
+  Ads       Ad[]
+}
+
+model Ad {
+  id              String   @id @default(uuid())
+  gameId          String
+  name            String
+  yearsPlaying    Int
+  discord         String
+  weekDays        String
+  hourStart       Int
+  hourEnd         Int
+  useVoiceChannel Boolean
+  createdAt       DateTime @default(now())
+
+  // indicar que o "Ad" sempre vai estar relacionado a um "Game"
+  // (só de por game Game, ele atualiza certo já que estamos com a opção ativada no settings.json do vscode e pela extensão do prisma)
+  game Game @relation(fields: [gameId], references: [id])
+}

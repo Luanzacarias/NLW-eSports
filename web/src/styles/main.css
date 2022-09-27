@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ajustes na scrollbar */
+*::-webkit-scrollbar {
+    width: 10px;  /* width of the entire scrollbar */
+}
+
+*::-webkit-scrollbar-track {
+    @apply bg-zinc-900;        /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-thumb {
+    @apply bg-zinc-700;  /* color of the scroll thumb */
+    @apply rounded;  /* roundness of the scroll thumb */
+    @apply border-2 border-solid border-zinc-900  /* creates padding around scroll thumb */
+   
+}
+/* Esconder o rélogio do input type="time" */
+*::-webkit-calendar-picker-indicator {   
+  @apply hidden
+}
